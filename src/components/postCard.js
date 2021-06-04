@@ -39,7 +39,7 @@ function PostCard({ data }) {
         <span className="text-gray-700"> • </span>
         <span>by {data.user}</span>
         <span>
-          {moment(data.time).format('YYYY-MM-DD')}
+          {" "}{data.time_ago}
         </span>
         {data.domain && (
           <>
