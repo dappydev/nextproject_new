@@ -3,7 +3,6 @@ import moment from "moment"
 import { truncate } from "../lib/utils"
 
 function PostCard({ data }) {
-  console.log('data ==>', data);
   if (!data) return <></>
 
   const titleClassName =

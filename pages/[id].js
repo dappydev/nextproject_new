@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { formatDistanceToNowStrict, fromUnixTime } from "date-fns"
+import moment from "moment"
 import { getPostIds, getPostDataWithComments } from "../src/services/items"
 import Comment from "../src/components/comments"
 import { SEO } from "../src/components/seo"
@@ -117,10 +117,7 @@ function PostContent({ data, onClickSave, isSaved }) {
             </span>
             <span>
               <IconTime />
-              {/* {formatDistanceToNowStrict(fromUnixTime(data.time), {
-                addSuffix: false,
-              })} */}
-              {new Date(data.time).toLocaleDateString("en-US")}
+              {moment(data.time).format('YYYY-MM-DD')}
             </span>
             <span>
               <Link href={`/${data.id}`}>
@@ -186,7 +183,6 @@ function PostContent({ data, onClickSave, isSaved }) {
             <Comment key={comment.id} data={comment} op={data.user} />
           ))}
         </div>
-        <Footer />
       </div>
     </>
   )
