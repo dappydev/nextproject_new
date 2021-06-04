@@ -1,21 +1,22 @@
 import Link from "next/link"
-import { formatDistanceToNowStrict, fromUnixTime } from "date-fns"
+import moment from "moment"
 import { truncate } from "../lib/utils"
 
 function PostCard({ data }) {
-  console.log('data ===>', data)
+  console.log('data ==>', data);
   if (!data) return <></>
 
   const titleClassName =
-    "text-lg font-semibold leading-3 text-gray-300 group-hover:text-yellow-500 focus:text-yellow-500"
+    "text-lg font-semibold leading-3 text-gray-100 group-hover:text-yellow-500 focus:text-yellow-500"
 
   return (
     <div className="group mb-6">
-      {data.url === data.id ? (
-        <Link href={`/${data.id}`}>
-          <a className={titleClassName}>{data.title}</a>
-        </Link>
-      ) : (
+      {data && (
+        data.title === data.id ? (
+          <Link href={`/${data.id}`}>
+            <a className={titleClassName}>{data.title}</a>
+          </Link>
+        ) : 
         <a
           href={data.url}
           target="_blank"
@@ -25,7 +26,8 @@ function PostCard({ data }) {
           {data.title}
         </a>
       )}
-      <div className="text-sm font-normal text-gray-400">
+      {data && (
+        <div className="text-sm font-normal text-gray-400">
         <span>{data.points} points</span>
         <span className="text-gray-700"> • </span>
         <span>
@@ -36,12 +38,9 @@ function PostCard({ data }) {
           </Link>
         </span>
         <span className="text-gray-700"> • </span>
-        {/* <span>by {data.user}</span> */}
+        <span>by {data.user}</span>
         <span>
-          {/* {formatDistanceToNowStrict(fromUnixTime(data.time), {
-            addSuffix: true,
-          })} */}
-          {new Date(data.time).toLocaleDateString("en-US")}
+          {moment(data.time).format('YYYY-MM-DD')}
         </span>
         {data.domain && (
           <>
@@ -50,6 +49,7 @@ function PostCard({ data }) {
           </>
         )}
       </div>
+      )}
     </div>
   )
 }

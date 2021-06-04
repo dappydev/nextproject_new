@@ -2,6 +2,7 @@ import { formatDistanceToNowStrict, fromUnixTime } from "date-fns"
 import { useState } from "react"
 import classnames from "classnames"
 import { IconUser } from "./icons"
+import moment from "moment"
 
 export default function Comment({ data, op }) {
   const content = { __html: data.content }
@@ -46,9 +47,7 @@ export default function Comment({ data, op }) {
           </span>
           <span className="text-gray-700"> • </span>
           <span>
-            {formatDistanceToNowStrict(fromUnixTime(data.time), {
-              addSuffix: true,
-            })}
+            {moment(data.time).format("YYYY-MM-DD")}
           </span>
         </div>
         <div

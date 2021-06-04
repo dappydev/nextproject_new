@@ -3,7 +3,7 @@ import { PostCard } from "./postCard"
 const Posts = ({ data }) => {
   return (
     <main className="flex-1">
-      {data && data.map((data, index) => <PostCard key={index} data={data} />)}
+      {data && data.map((item, index) => <PostCard key={index} data={item} />)}
     </main>
   )
 }
