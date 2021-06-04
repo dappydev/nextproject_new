@@ -4,7 +4,7 @@ import "unfetch"
 const BASE_URL = "https://hacker-news.firebaseio.com/v0"
 
 // https://github.com/tastejs/hacker-news-pwas
-const ITEM_URL = "https://api.hnpwa.com/v0/news/"
+const ITEM_URL = "https://api.hnpwa.com/v0/item"
 
 export async function getPostIds(limit = 20) {
   const ids = await fetch(`${BASE_URL}/topstories.json?print=pretty`).then((res) =>
@@ -21,9 +21,9 @@ function limitComments(comment) {
   return comment
 }
 
-export async function getPostData() {
-  const data = await fetch(`${ITEM_URL}1.json`).then((res) => res.json())
-  console.log(data);
+export async function getPostData(id) {
+  const data = await fetch(`${ITEM_URL}/${id}.json`).then((res) => res.json())
+  console.log("data", data);
 
   if (data.type != "job") {
     data.comments = []

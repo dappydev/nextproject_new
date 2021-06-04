@@ -3,7 +3,6 @@ import moment from "moment"
 import { truncate } from "../lib/utils"
 
 function PostCard({ data }) {
-  console.log('data ==>', data);
   if (!data) return <></>
 
   const titleClassName =
@@ -40,7 +39,7 @@ function PostCard({ data }) {
         <span className="text-gray-700"> • </span>
         <span>by {data.user}</span>
         <span>
-          {moment(data.time).format('YYYY-MM-DD')}
+          {" "}{data.time_ago}
         </span>
         {data.domain && (
           <>
